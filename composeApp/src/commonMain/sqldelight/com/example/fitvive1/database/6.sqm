@@ -1,0 +1,9 @@
+CREATE TABLE comida_completada (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    dia INTEGER NOT NULL,
+    objetivo TEXT NOT NULL,
+    tipo TEXT NOT NULL,
+    completada INTEGER NOT NULL DEFAULT 1,
+    updated_at TEXT NOT NULL,
+    UNIQUE(dia, objetivo, tipo)
+);

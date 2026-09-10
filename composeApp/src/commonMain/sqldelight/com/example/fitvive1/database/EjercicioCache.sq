@@ -1,0 +1,15 @@
+CREATE TABLE ejercicio_cache (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    grupo_muscular TEXT NOT NULL,
+    nombre TEXT NOT NULL,
+    timestamp TEXT NOT NULL
+);
+
+getEjercicios:
+SELECT * FROM ejercicio_cache WHERE grupo_muscular = ? ORDER BY id ASC;
+
+guardarEjercicio:
+INSERT INTO ejercicio_cache(grupo_muscular, nombre, timestamp) VALUES (?, ?, ?);
+
+borrarEjercicios:
+DELETE FROM ejercicio_cache WHERE grupo_muscular = ?;

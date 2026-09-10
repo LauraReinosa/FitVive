@@ -1,0 +1,21 @@
+CREATE TABLE notificaciones_config (
+    id INTEGER NOT NULL PRIMARY KEY,
+    notif_entrenamiento INTEGER NOT NULL DEFAULT 1,
+    hora_entrenamiento INTEGER NOT NULL DEFAULT 9,
+    minuto_entrenamiento INTEGER NOT NULL DEFAULT 0,
+    notif_dieta INTEGER NOT NULL DEFAULT 1,
+    hora_dieta INTEGER NOT NULL DEFAULT 12,
+    minuto_dieta INTEGER NOT NULL DEFAULT 0,
+    notif_progreso INTEGER NOT NULL DEFAULT 1,
+    dia_progreso_semana INTEGER NOT NULL DEFAULT 1,
+    hora_progreso INTEGER NOT NULL DEFAULT 10,
+    minuto_progreso INTEGER NOT NULL DEFAULT 0
+);
+
+CREATE TABLE peso_registro (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    fecha TEXT NOT NULL,
+    peso TEXT NOT NULL,
+    valoracion INTEGER NOT NULL DEFAULT 3,
+    notas TEXT NOT NULL DEFAULT ''
+);

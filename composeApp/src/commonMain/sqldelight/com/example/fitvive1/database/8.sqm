@@ -1,0 +1,51 @@
+CREATE TABLE sesion_activa (
+    id INTEGER NOT NULL PRIMARY KEY CHECK (id = 1),
+    usuario_id INTEGER NOT NULL,
+    FOREIGN KEY (usuario_id) REFERENCES usuario(id)
+);
+
+ALTER TABLE entreno ADD COLUMN usuario_id INTEGER NOT NULL DEFAULT 1;
+ALTER TABLE peso_registro ADD COLUMN usuario_id INTEGER NOT NULL DEFAULT 1;
+
+CREATE TABLE comida_completada_nueva (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    usuario_id INTEGER NOT NULL,
+    dia INTEGER NOT NULL,
+    objetivo TEXT NOT NULL,
+    tipo TEXT NOT NULL,
+    completada INTEGER NOT NULL DEFAULT 1,
+    updated_at TEXT NOT NULL,
+    UNIQUE(usuario_id, dia, objetivo, tipo)
+);
+
+INSERT INTO comida_completada_nueva (
+    id, usuario_id, dia, objetivo, tipo, completada, updated_at
+)
+SELECT id, 1, dia, objetivo, tipo, completada, updated_at
+FROM comida_completada;
+
+DROP TABLE comida_completada;
+ALTER TABLE comida_completada_nueva RENAME TO comida_completada;
+
+CREATE TABLE notificaciones_config_nueva (
+    usuario_id INTEGER NOT NULL PRIMARY KEY,
+    notif_entrenamiento INTEGER NOT NULL DEFAULT 1,
+    hora_entrenamiento INTEGER NOT NULL DEFAULT 9,
+    minuto_entrenamiento INTEGER NOT NULL DEFAULT 0,
+    notif_dieta INTEGER NOT NULL DEFAULT 1,
+    hora_dieta INTEGER NOT NULL DEFAULT 12,
+    minuto_dieta INTEGER NOT NULL DEFAULT 0,
+    notif_progreso INTEGER NOT NULL DEFAULT 1,
+    dia_progreso_semana INTEGER NOT NULL DEFAULT 1,
+    hora_progreso INTEGER NOT NULL DEFAULT 10,
+    minuto_progreso INTEGER NOT NULL DEFAULT 0
+);
+
+INSERT INTO notificaciones_config_nueva
+SELECT 1, notif_entrenamiento, hora_entrenamiento, minuto_entrenamiento,
+       notif_dieta, hora_dieta, minuto_dieta, notif_progreso,
+       dia_progreso_semana, hora_progreso, minuto_progreso
+FROM notificaciones_config;
+
+DROP TABLE notificaciones_config;
+ALTER TABLE notificaciones_config_nueva RENAME TO notificaciones_config;

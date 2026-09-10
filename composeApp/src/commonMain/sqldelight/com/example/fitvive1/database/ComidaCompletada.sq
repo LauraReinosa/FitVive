@@ -1,0 +1,26 @@
+CREATE TABLE comida_completada (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    usuario_id INTEGER NOT NULL,
+    dia INTEGER NOT NULL,
+    objetivo TEXT NOT NULL,
+    tipo TEXT NOT NULL,
+    completada INTEGER NOT NULL DEFAULT 1,
+    updated_at TEXT NOT NULL,
+    UNIQUE(usuario_id, dia, objetivo, tipo)
+);
+
+getComidasCompletadas:
+SELECT * FROM comida_completada
+WHERE usuario_id = :usuarioId AND dia = :dia
+  AND objetivo = :objetivo AND completada = 1
+ORDER BY tipo ASC;
+
+guardarComidaCompletada:
+INSERT OR REPLACE INTO comida_completada(
+    usuario_id, dia, objetivo, tipo, completada, updated_at
+) VALUES (:usuarioId, :dia, :objetivo, :tipo, :completada, :updatedAt);
+
+getTodosEstadosComidas:
+SELECT * FROM comida_completada
+WHERE usuario_id = :usuarioId
+ORDER BY updated_at ASC;

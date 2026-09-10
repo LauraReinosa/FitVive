@@ -1,0 +1,14 @@
+CREATE TABLE sesion_activa (
+    id INTEGER NOT NULL PRIMARY KEY CHECK (id = 1),
+    usuario_id INTEGER NOT NULL,
+    FOREIGN KEY (usuario_id) REFERENCES usuario(id)
+);
+
+obtenerUsuarioSesionActivaId:
+SELECT usuario_id FROM sesion_activa WHERE id = 1 LIMIT 1;
+
+guardarSesionActiva:
+INSERT OR REPLACE INTO sesion_activa(id, usuario_id) VALUES (1, :usuarioId);
+
+cerrarSesion:
+DELETE FROM sesion_activa WHERE id = 1;

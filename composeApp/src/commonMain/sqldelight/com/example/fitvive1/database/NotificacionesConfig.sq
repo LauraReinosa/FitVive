@@ -1,0 +1,31 @@
+CREATE TABLE notificaciones_config (
+    usuario_id INTEGER NOT NULL PRIMARY KEY,
+    notif_entrenamiento INTEGER NOT NULL DEFAULT 1,
+    hora_entrenamiento INTEGER NOT NULL DEFAULT 9,
+    minuto_entrenamiento INTEGER NOT NULL DEFAULT 0,
+    notif_dieta INTEGER NOT NULL DEFAULT 1,
+    hora_dieta INTEGER NOT NULL DEFAULT 12,
+    minuto_dieta INTEGER NOT NULL DEFAULT 0,
+    notif_progreso INTEGER NOT NULL DEFAULT 1,
+    dia_progreso_semana INTEGER NOT NULL DEFAULT 1,
+    hora_progreso INTEGER NOT NULL DEFAULT 10,
+    minuto_progreso INTEGER NOT NULL DEFAULT 0
+);
+
+obtenerConfigNotificaciones:
+SELECT * FROM notificaciones_config WHERE usuario_id = :usuarioId LIMIT 1;
+
+guardarConfigNotificaciones:
+INSERT OR REPLACE INTO notificaciones_config VALUES (
+    :usuarioId,
+    :notifEntrenamiento,
+    :horaEntrenamiento,
+    :minutoEntrenamiento,
+    :notifDieta,
+    :horaDieta,
+    :minutoDieta,
+    :notifProgreso,
+    :diaProgresoSemana,
+    :horaProgreso,
+    :minutoProgreso
+);

@@ -1,0 +1,6 @@
+CREATE TABLE entreno (
+    id INTEGER NOT NULL PRIMARY KEY,
+    fecha TEXT NOT NULL,
+    dia INTEGER NOT NULL,
+    grupo_muscular TEXT NOT NULL
+);

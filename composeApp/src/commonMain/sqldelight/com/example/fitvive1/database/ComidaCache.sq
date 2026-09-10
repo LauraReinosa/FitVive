@@ -1,0 +1,20 @@
+CREATE TABLE comida_cache (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    objetivo TEXT NOT NULL,
+    tipo TEXT NOT NULL,
+    nombre TEXT NOT NULL,
+    calorias INTEGER NOT NULL,
+    proteinas INTEGER NOT NULL,
+    carbohidratos INTEGER NOT NULL,
+    timestamp TEXT NOT NULL
+);
+
+getComidas:
+SELECT * FROM comida_cache WHERE objetivo = ? AND tipo = ? ORDER BY id ASC;
+
+guardarComida:
+INSERT INTO comida_cache(objetivo, tipo, nombre, calorias, proteinas, carbohidratos, timestamp)
+VALUES (?, ?, ?, ?, ?, ?, ?);
+
+borrarComidas:
+DELETE FROM comida_cache WHERE objetivo = ? AND tipo = ?;

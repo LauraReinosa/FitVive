@@ -1,0 +1,58 @@
+CREATE TABLE usuario (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    nombre TEXT NOT NULL,
+    email TEXT NOT NULL,
+    password TEXT NOT NULL,
+    sexo TEXT NOT NULL,
+    peso TEXT NOT NULL,
+    altura TEXT NOT NULL,
+    fechaNacimiento TEXT NOT NULL,
+    objetivo TEXT NOT NULL,
+    diasEntrenamiento INTEGER NOT NULL,
+    grupoMuscularFoco TEXT NOT NULL DEFAULT ''
+);
+
+CREATE UNIQUE INDEX usuario_email_normalizado
+ON usuario (LOWER(TRIM(email)));
+
+obtenerUsuarioPorId:
+SELECT * FROM usuario WHERE id = :id LIMIT 1;
+
+obtenerUsuarioPorCredenciales:
+SELECT * FROM usuario
+WHERE LOWER(TRIM(email)) = LOWER(TRIM(:email))
+  AND password = :password
+LIMIT 1;
+
+existeUsuarioConEmail:
+SELECT EXISTS(
+    SELECT 1
+    FROM usuario
+    WHERE LOWER(TRIM(email)) = LOWER(TRIM(:email))
+);
+
+guardarNuevoUsuario:
+INSERT INTO usuario (
+    nombre, email, password, sexo, peso, altura, fechaNacimiento,
+    objetivo, diasEntrenamiento, grupoMuscularFoco
+) VALUES (
+    :nombre, :email, :password, :sexo, :peso, :altura, :fechaNacimiento,
+    :objetivo, :diasEntrenamiento, :grupoMuscularFoco
+);
+
+ultimoUsuarioInsertadoId:
+SELECT last_insert_rowid();
+
+actualizarUsuario:
+UPDATE usuario
+SET nombre = :nombre,
+    email = :email,
+    password = :password,
+    sexo = :sexo,
+    peso = :peso,
+    altura = :altura,
+    fechaNacimiento = :fechaNacimiento,
+    objetivo = :objetivo,
+    diasEntrenamiento = :diasEntrenamiento,
+    grupoMuscularFoco = :grupoMuscularFoco
+WHERE id = :id;

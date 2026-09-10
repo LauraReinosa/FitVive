@@ -1,0 +1,29 @@
+CREATE TABLE peso_registro (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    usuario_id INTEGER NOT NULL,
+    fecha TEXT NOT NULL,
+    peso TEXT NOT NULL,
+    valoracion INTEGER NOT NULL DEFAULT 3,
+    notas TEXT NOT NULL DEFAULT ''
+);
+
+obtenerRegistrosPeso:
+SELECT * FROM peso_registro WHERE usuario_id = :usuarioId ORDER BY fecha DESC LIMIT 10;
+
+obtenerTodosRegistrosPeso:
+SELECT * FROM peso_registro WHERE usuario_id = :usuarioId ORDER BY fecha ASC;
+
+guardarRegistroPeso:
+INSERT INTO peso_registro(usuario_id, fecha, peso, valoracion, notas)
+VALUES (:usuarioId, :fecha, :peso, :valoracion, :notas);
+
+ultimoRegistroPeso:
+SELECT * FROM peso_registro WHERE usuario_id = :usuarioId ORDER BY fecha DESC LIMIT 1;
+
+eliminarRegistroPeso:
+DELETE FROM peso_registro WHERE id = :id AND usuario_id = :usuarioId;
+
+actualizarRegistroPeso:
+UPDATE peso_registro
+SET peso = :peso, notas = :notas
+WHERE id = :id AND usuario_id = :usuarioId;

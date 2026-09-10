@@ -1,0 +1,29 @@
+CREATE TABLE usuario_nuevo (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    nombre TEXT NOT NULL,
+    email TEXT NOT NULL,
+    password TEXT NOT NULL,
+    sexo TEXT NOT NULL,
+    peso TEXT NOT NULL,
+    altura TEXT NOT NULL,
+    fechaNacimiento TEXT NOT NULL,
+    objetivo TEXT NOT NULL,
+    diasEntrenamiento INTEGER NOT NULL,
+    grupoMuscularFoco TEXT NOT NULL DEFAULT ''
+);
+
+INSERT INTO usuario_nuevo (
+    id, nombre, email, password, sexo, peso, altura, fechaNacimiento,
+    objetivo, diasEntrenamiento, grupoMuscularFoco
+)
+SELECT
+    id, nombre, TRIM(email), password, sexo, peso, altura, fechaNacimiento,
+    objetivo, diasEntrenamiento, grupoMuscularFoco
+FROM usuario;
+
+DROP TABLE usuario;
+
+ALTER TABLE usuario_nuevo RENAME TO usuario;
+
+CREATE UNIQUE INDEX usuario_email_normalizado
+ON usuario (LOWER(TRIM(email)));

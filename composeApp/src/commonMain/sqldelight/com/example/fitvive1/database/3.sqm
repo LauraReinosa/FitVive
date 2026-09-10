@@ -1,0 +1,17 @@
+CREATE TABLE ejercicio_cache (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    grupo_muscular TEXT NOT NULL,
+    nombre TEXT NOT NULL,
+    timestamp TEXT NOT NULL
+);
+
+CREATE TABLE comida_cache (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    objetivo TEXT NOT NULL,
+    tipo TEXT NOT NULL,
+    nombre TEXT NOT NULL,
+    calorias INTEGER NOT NULL,
+    proteinas INTEGER NOT NULL,
+    carbohidratos INTEGER NOT NULL,
+    timestamp TEXT NOT NULL
+);

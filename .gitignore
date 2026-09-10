@@ -1,0 +1,29 @@
+# macOS
+.DS_Store
+__MACOSX/
+
+# Gradle / Kotlin
+.gradle/
+**/build/
+build/
+
+# Local configuration
+local.properties
+
+# IntelliJ / Android Studio
+.idea/
+*.iml
+
+# Xcode
+DerivedData/
+**/xcuserdata/
+*.xcuserstate
+
+# Secrets / signing
+*.jks
+*.keystore
+
+# Environment files
+.env
+.env.*
+composeApp/google-services.json

@@ -1,0 +1,20 @@
+CREATE TABLE entreno (
+    id INTEGER NOT NULL PRIMARY KEY,
+    usuario_id INTEGER NOT NULL,
+    fecha TEXT NOT NULL,
+    dia INTEGER NOT NULL,
+    grupo_muscular TEXT NOT NULL
+);
+
+obtenerEntrenamientos:
+SELECT * FROM entreno WHERE usuario_id = :usuarioId ORDER BY fecha DESC, id DESC LIMIT 20;
+
+obtenerTodosEntrenamientos:
+SELECT * FROM entreno WHERE usuario_id = :usuarioId ORDER BY fecha ASC;
+
+guardarEntrenamiento:
+INSERT INTO entreno(usuario_id, fecha, dia, grupo_muscular)
+VALUES (:usuarioId, :fecha, :dia, :grupoMuscular);
+
+contarEntrenamientos:
+SELECT COUNT(*) FROM entreno WHERE usuario_id = :usuarioId;
