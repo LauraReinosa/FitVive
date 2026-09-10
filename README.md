@@ -79,3 +79,8 @@ En macOS, abra `iosApp/iosApp.xcodeproj` con Xcode, seleccione el esquema `iosAp
 # Compilar Kotlin para iOS Simulator (Apple Silicon)
 ./gradlew :composeApp:compileKotlinIosSimulatorArm64
 ```
+## 📄 Memoria del Trabajo de Fin de Grado
+
+La memoria completa del proyecto, incluyendo el análisis, diseño, implementación y conclusiones, está disponible en el repositorio.
+
+👉 [Consultar la memoria completa del TFG](docs/Memoria-TFG.pdf)
